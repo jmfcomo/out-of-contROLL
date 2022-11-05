@@ -34,7 +34,7 @@ public class AIController : MonoBehaviour
 
         InvokeRepeating("Kick", 0, 0.5f);
 
-        speed = 8f;
+        speed = -8f;
     }
 
     public void OnPathComplete(Path p)
