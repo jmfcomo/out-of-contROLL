@@ -58,8 +58,8 @@
   <ItemGroup>
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Movement.cs" />
-    <Compile Include="Assets\AIController.cs" />
     <Compile Include="Assets\MenuScript.cs" />
+    <Compile Include="Assets\AIController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
