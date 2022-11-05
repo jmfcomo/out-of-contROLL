@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controls : MonoBehaviour
+public class PlayerControls : MonoBehaviour
 {
     private Rigidbody rb;
     private Camera cam;
@@ -31,13 +31,15 @@ public class Controls : MonoBehaviour
 
         // Kick
         if (Input.GetMouseButtonDown(0)) {
-            rb.AddRelativeForce(new Vector3(0, 0, kickSpeed), ForceMode.Impulse);
+            //rb.AddRelativeForce(new Vector3(0, 0, kickSpeed), ForceMode.Impulse);
+            Movement.Kick(kickSpeed, rb);
         }
 
         // Scoot
         if (Input.GetMouseButtonDown(1))
         {
-            rb.AddRelativeForce(new Vector3(0, 0, -1 * scootSpeed), ForceMode.Impulse);
+            //rb.AddRelativeForce(new Vector3(0, 0, -1 * scootSpeed), ForceMode.Impulse);
+            Movement.Scoot(scootSpeed, rb);
         }
 
     }
