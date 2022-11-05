@@ -15,6 +15,8 @@ public class AIController : MonoBehaviour
 
     public float speed;
 
+    public float kickFrequency;
+
     public float nextWaypointDistance = 3f;
 
     private int currentWaypoint = 0;
@@ -29,12 +31,18 @@ public class AIController : MonoBehaviour
 
         seeker.pathCallback += OnPathComplete;
 
-        seeker.StartPath(transform.position, targetPosition.position);
         rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
 
-        InvokeRepeating("Kick", 0, 0.5f);
-
         speed = -8f;
+        kickFrequency = 0.2f;
+
+        InvokeRepeating("Kick", 0, kickFrequency);
+        InvokeRepeating("GeneratePath", 0, 1f);
+    }
+
+    public void GeneratePath()
+    {
+        seeker.StartPath(transform.position, targetPosition.position);
     }
 
     public void OnPathComplete(Path p)
@@ -90,12 +98,8 @@ public class AIController : MonoBehaviour
 
     public void Kick()
     {
-        Debug.Log("Kick called");
-        Debug.Log(path);
-        Debug.Log(!reachedEndOfPath);
         if (path != null & !reachedEndOfPath)
         {
-            Debug.Log("Conditions met");
             Movement.Kick(speed, rb);
         }
     }
