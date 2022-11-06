@@ -4,6 +4,6 @@
 
 Welcome to Out of ContROLL, a game created for TigerHacks 2022.
 
-Feel free to browser our code on the main branch, and to check out the game build on the final-build branch.
+Feel free to browse our code on the main branch, and to check out the game build on the final-build branch.
 
 Thanks for playing!
