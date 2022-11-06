@@ -21,6 +21,8 @@ public class CubicleMenuScript : MonoBehaviour
         alpha = 0;
         t = gameObject.GetComponentInChildren<TextMeshPro>();
         Cursor.lockState = CursorLockMode.Locked;
+
+        GameObject.Find("UpgradeMenu").GetComponent<Canvas>().enabled = false;
     }
 
     // Update is called once per frame
@@ -45,29 +47,30 @@ public class CubicleMenuScript : MonoBehaviour
         t.color = new Color(0, 0, 0, alpha);
 
     }
-    /*
-    void OnMouseDown()
-    {
-        Debug.Log("A click somewhere");
-
-        if (CubicleController.rotationY > minAngle & CubicleController.rotationY < maxAngle)
-        {
-            Debug.Log("Click in my bounds");
-            e.Invoke();
-        }
-    }
-    */
 
     public void Race()
     {
-        if (GameManager.levelsUnlocked < GameManager.TOTAL_LEVELS)
+        if (GameManager.levelsUnlocked <= GameManager.TOTAL_LEVELS)
             SceneManager.LoadSceneAsync("Stage " + GameManager.levelsUnlocked);
         else
-            SceneManager.LoadSceneAsync("Stage " + 2);
+            SceneManager.LoadSceneAsync("Stage " + new System.Random().Next(1, GameManager.TOTAL_LEVELS));
+    }
+
+    public void Upgrade()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        //GameObject g = GameObject.Find("GameManager").GetComponent<GameObject>();
+        GameManager.StartUpgradeMenu();
     }
 
     public void OnDisable()
     {
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Byeeee");
+        Application.Quit();
     }
 }

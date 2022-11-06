@@ -7,6 +7,8 @@ using TMPro;
 public class RaceControl : MonoBehaviour
 {
 
+    private float[] parTimes = { 6, 8, 16, 16, 9 };
+
     private bool firstPlace = true;
 
     private float start;
@@ -50,19 +52,34 @@ public class RaceControl : MonoBehaviour
     {
         if (other.name == "Player")
         {
+            canMove = false;
+
+            float finalTime = Time.time - start;
+
             if (firstPlace)
             {
                 t.text = "You win!";
                 if (GameManager.levelsUnlocked < GameManager.TOTAL_LEVELS)
                     GameManager.levelsUnlocked++;
+                string sceneName = SceneManager.GetActiveScene().name;
+                int currentScene = (int)char.GetNumericValue(sceneName[sceneName.Length - 1]);
+                Debug.Log(currentScene);
+                GameManager.money += Mathf.Clamp((parTimes[currentScene - 1] - finalTime) * 3, 0, 100);
+
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayEndSound(true);
             } else
             {
                 t.text = "You lose!";
+                string sceneName = SceneManager.GetActiveScene().name;
+                int currentScene = (int)char.GetNumericValue(sceneName[sceneName.Length - 1]);
+                Debug.Log(currentScene);
+
+                GameManager.money += Mathf.Clamp(parTimes[ currentScene - 1 ] - finalTime, 0, 100);
+
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayEndSound(false);
+
             }
 
-            canMove = false;
-
-            float finalTime = Time.time - start;
 
             t.text += "\n" + finalTime.ToString("n3");
 

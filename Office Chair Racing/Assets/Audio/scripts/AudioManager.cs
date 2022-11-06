@@ -60,4 +60,10 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 	}
 
+	public void PlayEndSound(bool win)
+    {
+		var s = win ? sounds[2] : sounds[3];
+
+		s.source.Play();
+	}
 }

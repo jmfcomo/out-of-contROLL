@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+using System;
+using Unity.VisualScripting;
+using TMPro;
 
 public class GameManager: MonoBehaviour
 {
@@ -9,18 +13,99 @@ public class GameManager: MonoBehaviour
     public bool hasGains = false;
     public bool hasBounce = true;
     public bool hasSpinnyWheels = false;
-    public bool areodynamic = false;
+    public bool aerodynamic = false;
 
     public const int TOTAL_LEVELS = 5;
 
-    public static int levelsUnlocked;
+    public static int levelsUnlocked = 1;
+
+    public static float money = 10;
+
+    private static int storePage = 0;
+
+    public static UpgradeItem[] upgradeItems =
+    {
+        new UpgradeItem("Gains", 25),
+        new UpgradeItem("Rockets", 100),
+        new UpgradeItem("Bounciness", 20),
+        new UpgradeItem("Spinny wheels", 20),
+        new UpgradeItem("Aerodynamic chair", 50)
+    };
+
+    public void Right()
+    {
+        if (++storePage >= upgradeItems.Length)
+        {
+            storePage = 0;
+        }
+
+        TextMeshProUGUI t = GameObject.Find("Item").GetComponent<TextMeshProUGUI>();
+        t.text = upgradeItems[storePage].name;
+        t.text += "\n$" + upgradeItems[storePage].cost;
+    }
+    public void Left()
+    {
+        if (--storePage <= 0)
+        {
+            storePage = upgradeItems.Length;
+        }
+
+        TextMeshProUGUI t = GameObject.Find("Item").GetComponent<TextMeshProUGUI>();
+        t.text = upgradeItems[storePage].name;
+        t.text += "\n$" + upgradeItems[storePage].cost;
+    }
+
+    public static void StartUpgradeMenu()
+    {
+        Cursor.lockState = CursorLockMode.None;
+
+        GameObject.Find("UpgradeMenu").GetComponent<Canvas>().enabled = true;
+
+        TextMeshProUGUI t = GameObject.Find("Item").GetComponent<TextMeshProUGUI>();
+        t.text = upgradeItems[storePage].name;
+        t.text += "\n$" + upgradeItems[storePage].cost;
+
+        t = GameObject.Find("moneys").GetComponent<TextMeshProUGUI>();
+        t.text = "$" + money.ToString("n2");
+    }
+
+    public void Buy()
+    {
+        if (upgradeItems[storePage].cost < money)
+        {
+            money -= upgradeItems[storePage].cost;
+            if (upgradeItems[storePage].name == "Gains")
+            {
+                hasGains = true;
+                upgradeItems[storePage].cost = 0;
+            } else if (upgradeItems[storePage].name == "Rockets") {
+                hasRockets = true;
+                upgradeItems[storePage].cost = 0;
+            } else if (upgradeItems[storePage].name == "Bounciness") {
+                hasBounce = true;
+                upgradeItems[storePage].cost = 0;
+            } else if (upgradeItems[storePage].name == "Spinny wheels") {
+                hasSpinnyWheels = true;
+                upgradeItems[storePage].cost = 0;
+            } else if (upgradeItems[storePage].name == "Aerodynamic chair") {
+                aerodynamic = true;
+                upgradeItems[storePage].cost = 0;
+            }
+
+            TextMeshProUGUI t = GameObject.Find("Item").GetComponent<TextMeshProUGUI>();
+            t.text = upgradeItems[storePage].name;
+            t.text += "\n$" + upgradeItems[storePage].cost;
+
+            t = GameObject.Find("moneys").GetComponent<TextMeshProUGUI>();
+            t.text = "$" + money.ToString("n2");
+        }
+    }
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -54,7 +139,7 @@ public class GameManager: MonoBehaviour
         {
             coll.material.dynamicFriction /= 2;
         }
-        if (areodynamic)
+        if (aerodynamic)
         {
             player.GetComponent<Rigidbody>().drag = 0;
             player.transform.GetChild(0).GetComponentInChildren<MeshRenderer>().enabled = true;
@@ -63,16 +148,25 @@ public class GameManager: MonoBehaviour
 
         Debug.Log("GameManager did its magic");
     }
-
-    public void StartGame()
+    public void Update()
     {
-        SceneManager.LoadScene("Stage 1");
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            GameObject.Find("UpgradeMenu").GetComponent<Canvas>().enabled = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }        
     }
-
-    public void LevelWin()
-    {
-        SceneManager.LoadScene("Cubicle");
-    }
-
-
 }
+
+public class UpgradeItem
+{
+    public string name;
+    public float cost;
+
+    public UpgradeItem(string n, float c)
+    {
+        name = n;
+        cost = c;
+    }
+};
+
+
