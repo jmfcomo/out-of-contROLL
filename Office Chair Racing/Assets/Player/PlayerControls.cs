@@ -64,6 +64,7 @@ public class PlayerControls : MonoBehaviour
             rocketActive = true;
             StartCoroutine(Rocket());
             hasRocket = false;
+            PersonalAudio.RocketAudio();
         }
     }
 
@@ -91,5 +92,10 @@ public class PlayerControls : MonoBehaviour
         
         yield return new WaitForSeconds(rocketTime);
         rocketActive = false; 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        PersonalAudio.Hit();
     }
 }
