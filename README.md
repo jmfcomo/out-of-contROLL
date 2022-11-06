@@ -1,4 +1,4 @@
-# out-of-contROLL
+# Out of ContROLL
 
 #### Squeaky halls. Coworker competition. Rolly chairs—when office drama gets in the way, sometimes the only way to settle it is a race through the cubicles. Can you roll to victory and become the boss?
 
