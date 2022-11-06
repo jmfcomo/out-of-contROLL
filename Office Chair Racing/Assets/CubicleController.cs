@@ -8,8 +8,8 @@ public class CubicleController : MonoBehaviour
     public float vertSens = 2f;
     public float horizSens = 2f;
 
-    public float rotationY = 0f;
-    public float rotationX = -15f;
+    public static float rotationY = 0f;
+    public static float rotationX = -15f;
 
     // Start is called before the first frame update
     void Start()
