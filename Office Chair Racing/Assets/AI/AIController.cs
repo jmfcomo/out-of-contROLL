@@ -9,6 +9,8 @@ public class AIController : MonoBehaviour
 
     private Animator animator;
 
+    private AudioSource[] sources;
+
     public Transform targetPosition;
 
     private Seeker seeker;
@@ -41,6 +43,8 @@ public class AIController : MonoBehaviour
         animator = gameObject.GetComponentInChildren<Animator>();
         Debug.Log("Animator");
         Debug.Log(animator);
+
+        sources = gameObject.GetComponents<AudioSource>();
 
         InvokeRepeating("Kick", 0, kickFrequency);
         InvokeRepeating("GeneratePath", 0, 1f);

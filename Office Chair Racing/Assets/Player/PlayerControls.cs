@@ -11,6 +11,8 @@ public class PlayerControls : MonoBehaviour
     private float cameraDif;
     private Vector3 mousePos;
     public float kickSpeed, scootSpeed;
+    //private AudioSource[] sources;
+
 
     public bool hasRocket = false;
     private bool rocketActive = false;
@@ -29,6 +31,9 @@ public class PlayerControls : MonoBehaviour
         animator = gameObject.GetComponentInChildren<Animator>();
 
         Debug.Log(animator);
+
+        //sources = gameObject.GetComponents<AudioSource>();
+       // Debug.Log(sources.Length);
 
         kickSpeed = 8f;
         scootSpeed = 3f;
