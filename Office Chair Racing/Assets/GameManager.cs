@@ -7,13 +7,21 @@ public class GameManager: MonoBehaviour
 {
     public bool hasRockets = false;
     public bool hasGains = false;
-    public bool hasBouce = false;
+    public bool hasBounce = true;
     public bool hasSpinnyWheels = false;
     public bool areodynamic = false;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("GameManager doing its magic");
 
         GameObject player = GameObject.FindWithTag("Player");
         Collider coll = player.GetComponent<BoxCollider>();
@@ -25,21 +33,22 @@ public class GameManager: MonoBehaviour
         if (hasGains)
         {
             player.GetComponent<PlayerControls>().kickSpeed *= 2;
-            player.GetComponent<PlayerControls>().kickSpeed *= 2;
+            player.GetComponent<PlayerControls>().scootSpeed *= 2;
         }
-        if (hasBouce)
+        if (hasBounce)
         {
             coll.material.bounciness = 1;
         }
-        if(hasSpinnyWheels)
+        if (hasSpinnyWheels)
         {
             coll.material.dynamicFriction /= 2;
 
         }
 
-
+        Debug.Log("GameManager did its magic");
     }
-        public void StartGame()
+
+    public void StartGame()
     {
         SceneManager.LoadScene("Stage 1");
     }
