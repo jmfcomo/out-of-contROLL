@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minAngle: -90
-  maxAngle: -40
+  maxAngle: -60
   fadeSpeed: 0.01
   e:
     m_PersistentCalls:
