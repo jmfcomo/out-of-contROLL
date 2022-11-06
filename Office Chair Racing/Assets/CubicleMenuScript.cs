@@ -60,7 +60,10 @@ public class CubicleMenuScript : MonoBehaviour
 
     public void Race()
     {
-        SceneManager.LoadSceneAsync("Stage 1");
+        if (GameManager.levelsUnlocked < GameManager.TOTAL_LEVELS)
+            SceneManager.LoadSceneAsync("Stage " + GameManager.levelsUnlocked);
+        else
+            SceneManager.LoadSceneAsync("Stage " + 2);
     }
 
     public void OnDisable()

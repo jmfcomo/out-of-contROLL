@@ -11,6 +11,10 @@ public class GameManager: MonoBehaviour
     public bool hasSpinnyWheels = false;
     public bool areodynamic = false;
 
+    public const int TOTAL_LEVELS = 5;
+
+    public static int levelsUnlocked;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
