@@ -9,7 +9,12 @@ public class PlayerControls : MonoBehaviour
 
     private float cameraDif;
     private Vector3 mousePos;
-    public float kickSpeed, scootSpeed, lookSpeed;
+    public float kickSpeed, scootSpeed;
+
+    public bool hasRocket = false;
+    private bool rocketActive = false;
+    public float rocketSpeed;
+    public float rocketTime;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +25,6 @@ public class PlayerControls : MonoBehaviour
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         cameraDif = cam.transform.position.y - rb.transform.position.y;
 
-        lookSpeed = 8f;
         kickSpeed = 8f;
         scootSpeed = 3f;
     }
@@ -45,17 +49,16 @@ public class PlayerControls : MonoBehaviour
             Movement.Scoot(scootSpeed, rb);
         }
 
+        if (hasRocket == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            rocketActive = true;
+            StartCoroutine(Rocket());
+            hasRocket = false;
+        }
     }
 
     private void FixedUpdate()
     {
-        /*Debug.Log(Input.mousePosition);
-        Debug.Log(mousePos);
-
-        Vector3 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.z, lookDir.x) * Mathf.Rad2Deg;
-        rb.rotation *= Quaternion.Euler(0, angle * lookSpeed, 0);*/
-
 
       float  mouseX = Input.mousePosition.x;
 
@@ -66,5 +69,17 @@ public class PlayerControls : MonoBehaviour
         Vector3 lookDirection = new Vector3(worldpos.x, rb.transform.position.y, worldpos.z);
 
         rb.transform.LookAt(lookDirection);
+
+        if (rocketActive==true)
+        {
+            rb.AddRelativeForce(new Vector3(0, 0, rocketSpeed));
+        }
+    }
+
+    IEnumerator Rocket()
+    {
+        
+        yield return new WaitForSeconds(rocketTime);
+        rocketActive = false; 
     }
 }
