@@ -35,8 +35,8 @@ Transform:
   m_Children:
   - {fileID: 8682105656018610251}
   - {fileID: 8682105657260738873}
-  - {fileID: 8581021946308121739}
   - {fileID: 3702365350024419960}
+  - {fileID: 8581021946308121739}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,8 +134,8 @@ MonoBehaviour:
   kickSpeed: 0
   scootSpeed: 0
   hasRocket: 0
-  rocketSpeed: 0
-  rocketTime: 0
+  rocketSpeed: 125
+  rocketTime: 3
 --- !u!1001 &3813362330987068819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 34db266a6232974499db91ed9e2c4354, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34db266a6232974499db91ed9e2c4354, type: 3}
       propertyPath: m_LocalScale.x
@@ -248,7 +248,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3251095851489811634, guid: 74f80a188dd4c8045afc345a686b442e, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3251095851489811634, guid: 74f80a188dd4c8045afc345a686b442e, type: 3}
       propertyPath: m_LocalPosition.x
