@@ -22,7 +22,7 @@ public class PlayerControls : MonoBehaviour
 
         lookSpeed = 8f;
         kickSpeed = 8f;
-        scootSpeed = 2f;
+        scootSpeed = 3f;
     }
 
     // Update is called once per frame
