@@ -29,6 +29,13 @@ public class GameManager: MonoBehaviour
         if (hasRockets)
         {
             player.GetComponent<PlayerControls>().hasRocket = true;
+            MeshRenderer[] rocketRender = player.transform.GetChild(3).GetComponentsInChildren<MeshRenderer>();
+            BoxCollider[] rocketColl = player.transform.GetChild(3).GetComponentsInChildren<BoxCollider>();
+
+            foreach(MeshRenderer rocRend in rocketRender)
+            rocRend.enabled = true;
+            foreach(BoxCollider recColl in rocketColl)
+            recColl.enabled = true;
         }
         if (hasGains)
         {
@@ -42,7 +49,12 @@ public class GameManager: MonoBehaviour
         if (hasSpinnyWheels)
         {
             coll.material.dynamicFriction /= 2;
-
+        }
+        if (areodynamic)
+        {
+            player.GetComponent<Rigidbody>().drag = 0;
+            player.transform.GetChild(0).GetComponentInChildren<MeshRenderer>().enabled = true;
+            player.transform.GetChild(1).GetComponentInChildren<MeshRenderer>().enabled = false;
         }
 
         Debug.Log("GameManager did its magic");

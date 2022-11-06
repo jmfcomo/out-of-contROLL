@@ -398,6 +398,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc6dcf68cc25ef4184a6d0f3e01cc60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasRockets: 0
+  hasGains: 0
+  hasBounce: 0
+  hasSpinnyWheels: 0
+  areodynamic: 0
 --- !u!4 &583013781
 Transform:
   m_ObjectHideFlags: 0
