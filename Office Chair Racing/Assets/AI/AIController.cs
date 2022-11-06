@@ -7,6 +7,8 @@ public class AIController : MonoBehaviour
 {
     public Rigidbody rb;
 
+    private Animator animator;
+
     public Transform targetPosition;
 
     private Seeker seeker;
@@ -33,8 +35,12 @@ public class AIController : MonoBehaviour
 
         rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
 
-        speed = -8f;
+        speed = 8f;
         kickFrequency = 0.2f;
+
+        animator = gameObject.GetComponentInChildren<Animator>();
+        Debug.Log("Animator");
+        Debug.Log(animator);
 
         InvokeRepeating("Kick", 0, kickFrequency);
         InvokeRepeating("GeneratePath", 0, 1f);
@@ -87,7 +93,7 @@ public class AIController : MonoBehaviour
             }
         }
 
-        Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+        Vector3 dir = -1 * (path.vectorPath[currentWaypoint] - transform.position).normalized;
         rb.rotation = Quaternion.LookRotation(dir);
     }
 
@@ -100,7 +106,7 @@ public class AIController : MonoBehaviour
     {
         if (path != null & !reachedEndOfPath)
         {
-            Movement.Kick(speed, rb);
+            Movement.Kick(speed, rb, animator);
         }
     }
 }

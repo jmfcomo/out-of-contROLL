@@ -6,6 +6,7 @@ public class PlayerControls : MonoBehaviour
 {
     private Rigidbody rb;
     private Camera cam;
+    private Animator animator;
 
     private float cameraDif;
     private Vector3 mousePos;
@@ -25,6 +26,10 @@ public class PlayerControls : MonoBehaviour
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         cameraDif = cam.transform.position.y - rb.transform.position.y;
 
+        animator = gameObject.GetComponentInChildren<Animator>();
+
+        Debug.Log(animator);
+
         kickSpeed = 8f;
         scootSpeed = 3f;
     }
@@ -39,14 +44,14 @@ public class PlayerControls : MonoBehaviour
         // Kick
         if (Input.GetMouseButtonDown(0)) {
             //rb.AddRelativeForce(new Vector3(0, 0, kickSpeed), ForceMode.Impulse);
-            Movement.Kick(kickSpeed, rb);
+            Movement.Kick(kickSpeed, rb, animator);
         }
 
         // Scoot
         if (Input.GetMouseButtonDown(1))
         {
             //rb.AddRelativeForce(new Vector3(0, 0, -1 * scootSpeed), ForceMode.Impulse);
-            Movement.Scoot(scootSpeed, rb);
+            Movement.Scoot(scootSpeed, rb, animator);
         }
 
         if (hasRocket == true && Input.GetKeyDown(KeyCode.Space))
