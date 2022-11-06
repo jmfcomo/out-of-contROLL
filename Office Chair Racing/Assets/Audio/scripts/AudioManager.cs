@@ -1,6 +1,7 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -13,7 +14,13 @@ public class AudioManager : MonoBehaviour
 
 	private void Start()
 	{
-		Play("Menu Music");
+		if (SceneManager.GetActiveScene().name == "Cubicle")
+		{ 
+			Play("Menu Music"); 
+		}else
+        {
+			Play("Level Music");
+        }
 	}
 
 	void Awake()

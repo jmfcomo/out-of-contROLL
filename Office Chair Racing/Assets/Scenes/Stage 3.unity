@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589245, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.172768, g: 0.21589169, b: 0.29782546, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1787,6 +1787,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 999044323093483496, guid: 2109b10da05867141a825a1583273fc3, type: 3}
   m_PrefabInstance: {fileID: 2048636168}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &414042349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7304724689166142708, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.033713
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -27.104496
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.252151
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304724689166142710, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d7f9c28895b88249887e46ae30f0b67, type: 3}
 --- !u!4 &421746229 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 999044323093483496, guid: 2109b10da05867141a825a1583273fc3, type: 3}
