@@ -30,7 +30,7 @@ public class CubicleMenuScript : MonoBehaviour
     {
         if (CubicleController.rotationY > minAngle & CubicleController.rotationY < maxAngle)
         {
-            alpha += fadeSpeed;
+            alpha += fadeSpeed * Time.deltaTime;
             if (Input.GetMouseButtonDown(0))
             { 
                 Debug.Log("Click");
@@ -39,7 +39,7 @@ public class CubicleMenuScript : MonoBehaviour
         }
         else
         {
-            alpha -= fadeSpeed;
+            alpha -= fadeSpeed * Time.deltaTime;
         }
 
         alpha = Mathf.Clamp(alpha, 0, 1);
@@ -59,7 +59,14 @@ public class CubicleMenuScript : MonoBehaviour
     public void Upgrade()
     {
         Cursor.lockState = CursorLockMode.None;
-        //GameObject g = GameObject.Find("GameManager").GetComponent<GameObject>();
+        CubicleController.EnterMenu();
+        GameManager.StartUpgradeMenu();
+        //StartCoroutine(StartUpgradeAfterTransition());
+    }
+
+    IEnumerator StartUpgradeAfterTransition()
+    {
+        yield return new WaitForSeconds(CubicleController.transitionDuration);
         GameManager.StartUpgradeMenu();
     }
 

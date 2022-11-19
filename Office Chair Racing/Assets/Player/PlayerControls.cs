@@ -59,7 +59,7 @@ public class PlayerControls : MonoBehaviour
             Movement.Scoot(scootSpeed, rb, animator);
         }
 
-        if (hasRocket == true && Input.GetKeyDown(KeyCode.Space))
+        if (hasRocket == true && Input.GetKeyDown(KeyCode.Space) && RaceControl.canMove)
         {
             rocketActive = true;
             StartCoroutine(Rocket());
