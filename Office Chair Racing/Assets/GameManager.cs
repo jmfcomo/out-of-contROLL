@@ -25,7 +25,7 @@ public class GameManager: MonoBehaviour
 
     public static UpgradeItem[] upgradeItems =
     {
-        new UpgradeItem("Gains", 25),
+        new UpgradeItem("Gym Membership", 25),
         new UpgradeItem("Rockets", 100),
         new UpgradeItem("Bounciness", 20),
         new UpgradeItem("Spinny wheels", 20),
@@ -59,7 +59,9 @@ public class GameManager: MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
 
-        GameObject.Find("UpgradeMenu").GetComponent<Canvas>().enabled = true;
+        GameManager g = GameObject.FindObjectOfType<GameManager>();
+        g.StartCoroutine("WaitForTransition");
+        //GameObject.Find("UpgradeMenu").GetComponent<Canvas>().enabled = true;
 
         TextMeshProUGUI t = GameObject.Find("Item").GetComponent<TextMeshProUGUI>();
         t.text = upgradeItems[storePage].name;
@@ -69,12 +71,26 @@ public class GameManager: MonoBehaviour
         t.text = "$" + money.ToString("n2");
     }
 
+    public static void ExitUpgradeMenu()
+    {
+        GameObject.Find("UpgradeMenu").GetComponent<Canvas>().enabled = false;
+        CubicleController.ExitMenu();
+        Cursor.lockState = CursorLockMode.Locked;
+        GameObject.FindObjectOfType<GameManager>().StopCoroutine("WaitForTransition");
+    }
+
+    IEnumerator WaitForTransition()
+    {
+        yield return new WaitForSeconds(CubicleController.transitionDuration);
+        GameObject.Find("UpgradeMenu").GetComponent<Canvas>().enabled = true;
+    }
+
     public void Buy()
     {
         if (upgradeItems[storePage].cost < money)
         {
             money -= upgradeItems[storePage].cost;
-            if (upgradeItems[storePage].name == "Gains")
+            if (upgradeItems[storePage].name == "Gym Membership")
             {
                 hasGains = true;
                 upgradeItems[storePage].cost = 0;
@@ -151,8 +167,7 @@ public class GameManager: MonoBehaviour
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)){
-            GameObject.Find("UpgradeMenu").GetComponent<Canvas>().enabled = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            ExitUpgradeMenu();
         }        
     }
 }

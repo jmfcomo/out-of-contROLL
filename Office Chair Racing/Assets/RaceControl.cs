@@ -59,7 +59,7 @@ public class RaceControl : MonoBehaviour
             if (firstPlace)
             {
                 t.text = "You win!";
-                if (GameManager.levelsUnlocked < GameManager.TOTAL_LEVELS)
+                if (GameManager.levelsUnlocked <= GameManager.TOTAL_LEVELS)
                     GameManager.levelsUnlocked++;
                 string sceneName = SceneManager.GetActiveScene().name;
                 int currentScene = (int)char.GetNumericValue(sceneName[sceneName.Length - 1]);
